@@ -6,7 +6,7 @@ func AutoMigrate() {
 
 	_, err := DB.Exec(`
 		CREATE TABLE IF NOT EXISTS categories (
-			id SERIAL PRIMARY KEY,
+			id int PRIMARY KEY,
 			name VARCHAR(100) NOT NULL
 		);
 	`)
@@ -16,7 +16,7 @@ func AutoMigrate() {
 
 	_, err = DB.Exec(`
 		CREATE TABLE IF NOT EXISTS books (
-			id SERIAL PRIMARY KEY,
+			id int PRIMARY KEY,
 			title VARCHAR(200) NOT NULL,
 			author VARCHAR(100),
 			category_id INT REFERENCES categories(id) ON DELETE CASCADE
