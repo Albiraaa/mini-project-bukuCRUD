@@ -25,12 +25,14 @@ func main() {
 
 	// CATEGORY ROUTES
 	r.GET("/kategori", controllers.GetCategories)
+	r.GET("/kategori/:id", controllers.GetCategoryByID)
 	r.POST("/kategori", controllers.CreateCategory)
 	r.PUT("/kategori/:id", controllers.UpdateCategory)
 	r.DELETE("/kategori/:id", controllers.DeleteCategory)
 
 	// BOOK ROUTES
 	r.GET("/buku", controllers.GetBooks)
+	r.GET("/buku/:id", controllers.GetBookByID)
 	r.POST("/buku", controllers.CreateBook)
 	r.PUT("/buku/:id", controllers.UpdateBook)
 	r.DELETE("/buku/:id", controllers.DeleteBook)

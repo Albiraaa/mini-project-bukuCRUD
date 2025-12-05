@@ -29,6 +29,26 @@ func GetBooks(c *gin.Context) {
 	c.JSON(http.StatusOK, books)
 }
 
+func GetBookByID(c *gin.Context) {
+	id := c.Param("id")
+
+	var b models.Book
+
+	err := database.DB.QueryRow(`
+		SELECT books.id, books.title, books.author, categories.id, categories.name
+		FROM books
+		JOIN categories ON books.category_id = categories.id
+		WHERE books.id = $1
+	`, id).Scan(&b.ID, &b.Title, &b.Author, &b.CategoryID, &b.Category)
+
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Book not found"})
+		return
+	}
+
+	c.JSON(http.StatusOK, b)
+}
+
 func CreateBook(c *gin.Context) {
 	var body models.Book
 	if err := c.ShouldBindJSON(&body); err != nil {

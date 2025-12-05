@@ -25,6 +25,22 @@ func GetCategories(c *gin.Context) {
 	c.JSON(http.StatusOK, categories)
 }
 
+func GetCategoryByID(c *gin.Context) {
+	id := c.Param("id")
+
+	var cat models.Category
+
+	err := database.DB.QueryRow("SELECT id, name FROM categories WHERE id = $1", id).
+		Scan(&cat.ID, &cat.Name)
+
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Category not found"})
+		return
+	}
+
+	c.JSON(http.StatusOK, cat)
+}
+
 func CreateCategory(c *gin.Context) {
 	var body models.Category
 	if err := c.ShouldBindJSON(&body); err != nil {
