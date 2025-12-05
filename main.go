@@ -24,16 +24,16 @@ func main() {
 	r := gin.Default()
 
 	// CATEGORY ROUTES
-	r.GET("/categories", controllers.GetCategories)
-	r.POST("/categories", controllers.CreateCategory)
-	r.PUT("/categories/:id", controllers.UpdateCategory)
-	r.DELETE("/categories/:id", controllers.DeleteCategory)
+	r.GET("/kategori", controllers.GetCategories)
+	r.POST("/kategori", controllers.CreateCategory)
+	r.PUT("/kategori/:id", controllers.UpdateCategory)
+	r.DELETE("/kategori/:id", controllers.DeleteCategory)
 
 	// BOOK ROUTES
-	r.GET("/books", controllers.GetBooks)
-	r.POST("/books", controllers.CreateBook)
-	r.PUT("/books/:id", controllers.UpdateBook)
-	r.DELETE("/books/:id", controllers.DeleteBook)
+	r.GET("/buku", controllers.GetBooks)
+	r.POST("/buku", controllers.CreateBook)
+	r.PUT("/buku/:id", controllers.UpdateBook)
+	r.DELETE("/buku/:id", controllers.DeleteBook)
 
 	port := os.Getenv("PORT")
 	if port == "" {
