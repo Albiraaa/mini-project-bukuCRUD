@@ -3,7 +3,7 @@ package database
 import "log"
 
 func AutoMigrate() {
-	// Create table categories
+
 	_, err := DB.Exec(`
 		CREATE TABLE IF NOT EXISTS categories (
 			id SERIAL PRIMARY KEY,
@@ -14,7 +14,6 @@ func AutoMigrate() {
 		log.Fatal("Error creating categories table:", err)
 	}
 
-	// Create table books
 	_, err = DB.Exec(`
 		CREATE TABLE IF NOT EXISTS books (
 			id SERIAL PRIMARY KEY,
